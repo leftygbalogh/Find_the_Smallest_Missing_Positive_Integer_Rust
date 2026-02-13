@@ -1,0 +1,6 @@
+[package]
+name = "Find_the_Smallest_Missing_Positive_Integer_Rust__"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
