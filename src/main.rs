@@ -10,11 +10,9 @@ use std::io::{self, BufRead};
  * The function accepts INTEGER_ARRAY orderNumbers as parameter.
  */
 
-fn findSmallestMissingPositive(orderNumbers: &[i32]) -> i32 {
+pub fn findSmallestMissingPositive(orderNumbers: &[i32]) -> i32 {
 
-	// if orderNumbers.len() == 0 {
-	// 	return 1;
-	// }
+	println!("{:?}", orderNumbers);
 
 	// Write your code here
 	println!("SmallestMissingPositive orderNumbers: {:?}", &orderNumbers);
@@ -44,6 +42,15 @@ fn findSmallestMissingPositive(orderNumbers: &[i32]) -> i32 {
 	}
 
 	l2+1
+}
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+	#[test]
+	fn findSmallestMissingPositive_test() {
+		assert_eq!(findSmallestMissingPositive(&[1, 3, 4, -9, 7]), 2);
+	}
 }
 
 fn main() {
