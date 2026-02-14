@@ -26,15 +26,23 @@ fn findSmallestMissingPositive(orderNumbers: &[i32]) -> i32 {
 
 	//let l1 = set.iter().filter(|p| !set.contains(p) );
 	set.retain(|x| {x > &&0 });
-
-	let mut length = set.len();
-	let mut l2: i32 = length.try_into().unwrap();
-		set.retain(|x| {x < &&l2   });
-
 	println!("{:?}", &set);
 
 	let mut length = set.len();
 	let mut l2: i32 = length.try_into().unwrap();
+	set.retain(|x| {x < &&l2   });
+
+	let mut index = 1;
+	for element in set {
+		println!("index: {} - elem: {}", index, element);
+		if *element != index {
+			return index;
+		}
+		else{
+			index += 1;
+		}
+	}
+
 	l2+1
 }
 
