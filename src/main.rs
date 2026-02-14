@@ -31,11 +31,11 @@ fn findSmallestMissingPositive(orderNumbers: &[i32]) -> i32 {
 	let mut l2: i32 = length.try_into().unwrap();
 		set.retain(|x| {x < &&l2   });
 
-	if set.len() == 0 {
-		println!("No useful element found");
-		return 1;
-	}
-	42
+	println!("{:?}", &set);
+
+	let mut length = set.len();
+	let mut l2: i32 = length.try_into().unwrap();
+	l2+1
 }
 
 fn main() {
