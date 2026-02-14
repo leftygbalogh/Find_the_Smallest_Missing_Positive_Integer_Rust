@@ -1,4 +1,4 @@
-use std::collections::HashSet;
+use std::collections::{BTreeSet, HashSet};
 use std::io::{self, BufRead};
 
 
@@ -11,18 +11,36 @@ use std::io::{self, BufRead};
  */
 
 fn findSmallestMissingPositive(orderNumbers: &[i32]) -> i32 {
+
+	// if orderNumbers.len() == 0 {
+	// 	return 1;
+	// }
+
 	// Write your code here
 	println!("SmallestMissingPositive orderNumbers: {:?}", &orderNumbers);
-	let mut set: HashSet<&i32> = HashSet::new();
+	let mut set: BTreeSet<&i32> = BTreeSet::new();
 	for num in orderNumbers {
 		set.insert(&num);
 	}
-	println!("{:?}", set);
-	42
+	println!("{:?}", &set);
 
+	//let l1 = set.iter().filter(|p| !set.contains(p) );
+	set.retain(|x| {x > &&0 });
+
+	let mut length = set.len();
+	let mut l2: i32 = length.try_into().unwrap();
+		set.retain(|x| {x < &&l2   });
+
+	if set.len() == 0 {
+		println!("No useful element found");
+		return 1;
+	}
+	42
 }
 
 fn main() {
+
+	println!("\x1b[2J\x1b[H\x1b[3J");
 	let stdin = io::stdin();
 	let mut stdin_iterator = stdin.lock().lines();
 
