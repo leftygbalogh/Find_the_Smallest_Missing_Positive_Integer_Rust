@@ -12,19 +12,11 @@ use std::io::{self, BufRead};
 
 pub fn findSmallestMissingPositive(orderNumbers: &[i32]) -> i32 {
 
-	println!("{:?}", orderNumbers);
-
-	// Write your code here
-	println!("SmallestMissingPositive orderNumbers: {:?}", &orderNumbers);
 	let mut set: BTreeSet<&i32> = BTreeSet::new();
 	for num in orderNumbers {
 		set.insert(&num);
 	}
-	println!("{:?}", &set);
-
-	//let l1 = set.iter().filter(|p| !set.contains(p) );
 	set.retain(|x| {x > &&0 });
-	println!("{:?}", &set);
 
 	let mut length = set.len();
 	let mut l2: i32 = length.try_into().unwrap();
@@ -32,7 +24,6 @@ pub fn findSmallestMissingPositive(orderNumbers: &[i32]) -> i32 {
 
 	let mut index = 1;
 	for element in set {
-		println!("index: {} - elem: {}", index, element);
 		if *element != index {
 			return index;
 		}
