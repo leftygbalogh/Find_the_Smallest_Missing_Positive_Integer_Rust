@@ -1,4 +1,3 @@
-use std::collections::{BTreeSet, HashSet};
 use std::io::{self, BufRead};
 
 
@@ -11,6 +10,9 @@ use std::io::{self, BufRead};
  */
 
 pub fn findSmallestMissingPositive(orderNumbers: &[i32]) -> i32 {
+
+	use std::collections::BTreeSet;
+	use std::convert::TryInto;
 
 	let mut set: BTreeSet<&i32> = BTreeSet::new();
 	for num in orderNumbers {
