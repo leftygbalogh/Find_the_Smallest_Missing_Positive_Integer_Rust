@@ -49,6 +49,10 @@ mod tests {
 	use super::*;
 	#[test]
 	fn findSmallestMissingPositive_test() {
+		assert_eq!(findSmallestMissingPositive(&[]), 1);
+		assert_eq!(findSmallestMissingPositive(&[1]), 2);
+		assert_eq!(findSmallestMissingPositive(&[0]), 1);
+		assert_eq!(findSmallestMissingPositive(&[-1, -3, -4, -9, -7]), 1);
 		assert_eq!(findSmallestMissingPositive(&[1, 3, 4, -9, 7]), 2);
 	}
 }
