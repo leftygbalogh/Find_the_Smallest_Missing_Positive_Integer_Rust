@@ -41,8 +41,25 @@ pub fn findSmallestMissingPositive(orderNumbers: &[i32]) -> i32 {
 mod tests {
 	use super::*;
 	pub struct TestData {
-		input_data: [i32; 5],
+		input_data: [i32; 4],
 		expected_result: u8,
+	}
+
+
+	#[test]
+	fn findSmallestInt_batch_test()	{
+		let a = [23,45,67];
+
+		let td = TestData {
+			input_data: [1,2,3,5],
+			expected_result: 4,
+		};
+
+		println!("{:?}", &td.input_data);
+		assert_eq!(findSmallestMissingPositive(&[1,2,3,5]), td.expected_result.into());
+
+		//assert_eq!(findSmallestMissingPositive(&td.input_data), td.expected_result.into());
+
 	}
 
 	#[test]
