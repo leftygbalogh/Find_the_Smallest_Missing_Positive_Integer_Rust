@@ -40,6 +40,11 @@ pub fn findSmallestMissingPositive(orderNumbers: &[i32]) -> i32 {
 #[cfg(test)]
 mod tests {
 	use super::*;
+	pub struct TestData {
+		input_data: [i32; 5],
+		expected_result: u8,
+	}
+
 	#[test]
 	fn findSmallestMissingPositive_test() {
 		assert_eq!(findSmallestMissingPositive(&[]), 1);
@@ -48,6 +53,8 @@ mod tests {
 		assert_eq!(findSmallestMissingPositive(&[-1, -3, -4, -9, -7]), 1);
 		assert_eq!(findSmallestMissingPositive(&[1, 3, 4, -9, 7]), 2);
 	}
+
+
 }
 
 fn main() {
