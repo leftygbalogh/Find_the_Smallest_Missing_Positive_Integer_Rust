@@ -1,3 +1,4 @@
+use std::collections::BTreeSet;
 use std::io::{self, BufRead};
 
 
@@ -14,17 +15,24 @@ pub fn findSmallestMissingPositive(orderNumbers: &[i32]) -> i32 {
 		return 1;
 	}
 
-	let length = orderNumbers.len() as i32;
+	use std::collections::BTreeSet;
 
-	for number in orderNumbers {
-		println!("{}", number);
-		if (number > &0) && (number <= &length) {
-			println!("{}", number);
+	let mut set = BTreeSet::from_iter(orderNumbers.iter());
+	let mut set = BTreeSet::from_iter(set.iter().filter(|x| x > &&&0));
+
+	drop(orderNumbers);
+	//print!("{:?}", set);
+
+	let mut index = 1;
+	for value in set {
+		//println!("index {}", &index);
+		//println!("value {}", &value);
+		if value != &&index {
+			return index;
 		}
-
+		index += 1;
 	}
-
-42}
+	return index;}
 
 #[cfg(test)]
 mod tests {
