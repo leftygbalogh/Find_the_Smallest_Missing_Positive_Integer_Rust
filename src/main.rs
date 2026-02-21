@@ -47,16 +47,27 @@ mod tests {
 
 	#[test]
 	fn findSmallestInt_batch_test()	{
-		let td = TestData {
+		let td1 = TestData {
 			input_data: [1,2,3,5],
 			expected_result: 4,
 		};
 
-		println!("{:?}", &td.input_data);
-		assert_eq!(findSmallestMissingPositive(&[1,2,3,5]), td.expected_result.into());
+		let td2 = TestData {
+			input_data: [1,2,3,0],
+			expected_result: 4,
+		};
 
-		//assert_eq!(findSmallestMissingPositive(&td.input_data), td.expected_result.into());
+		let td3 = TestData {
+			input_data: [1,2,3,-5],
+			expected_result: 4,
+		};
 
+		let tdlist = [td1, td2, td3];
+
+		for td in tdlist.iter() {
+			println!("{:?}", &td.input_data);
+			assert_eq!(findSmallestMissingPositive(&[1,2,3,5]), td.expected_result.into());
+		}
 	}
 
 	#[test]
@@ -68,8 +79,47 @@ mod tests {
 		assert_eq!(findSmallestMissingPositive(&[1, 3, 4, -9, 7]), 2);
 	}
 
+	#[test]
+	fn OneHundredKItems_batch_test()	{
+		use rand::prelude::*;
+		#[derive(Debug)]
+		pub struct OneHundredKTestData {
+			input_data: [i32; 10],
+			expected_result: u8,
+		}
 
-}
+		impl OneHundredKTestData {
+			pub fn new_random() -> OneHundredKTestData {
+				let mut data = [0;10];
+				for _ in 0..10  {
+					data.fill(rand::random());
+				}
+				data[0] = 5;
+				data[1] = 3;
+				data[2] = 2;
+				data[3] = 1;
+
+				for value in data.iter_mut() {
+					if *value == 4 {
+						*value = 5;
+					}
+				}
+
+
+				OneHundredKTestData{input_data: data, expected_result: 4} }
+			}
+
+		let data = OneHundredKTestData::new_random();
+		println!("DIPLODOCUS{:?}", &data);
+		assert_eq!(findSmallestMissingPositive(&data.input_data), data.expected_result.into())
+		}
+
+
+
+	}
+
+
+
 
 fn main() {
 
@@ -79,14 +129,14 @@ fn main() {
 
 	let orderNumbers_count = stdin_iterator.next().unwrap().unwrap().trim().parse::<i32>().unwrap();
 
-	let mut orderNumbers: Vec<i32> = Vec::with_capacity(orderNumbers_count as usize);
+	let mut order_numbers: Vec<i32> = Vec::with_capacity(orderNumbers_count as usize);
 
 	for _ in 0..orderNumbers_count {
-		let orderNumbers_item = stdin_iterator.next().unwrap().unwrap().trim().parse::<i32>().unwrap();
-		orderNumbers.push(orderNumbers_item);
+		let order_numbers_item = stdin_iterator.next().unwrap().unwrap().trim().parse::<i32>().unwrap();
+		order_numbers.push(order_numbers_item);
 	}
 
-	let result = findSmallestMissingPositive(&orderNumbers);
+	let result = findSmallestMissingPositive(&order_numbers);
 
 	println!("{}", result);
 }
