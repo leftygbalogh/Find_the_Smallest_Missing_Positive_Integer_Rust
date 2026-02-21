@@ -17,8 +17,10 @@ pub fn findSmallestMissingPositive(orderNumbers: &[i32]) -> i32 {
 
 	use std::collections::BTreeSet;
 
-	let mut set = BTreeSet::from_iter(orderNumbers.iter());
-	let mut set = BTreeSet::from_iter(set.iter().filter(|x| x > &&&0));
+	// let mut set = BTreeSet::from_iter(orderNumbers.iter());
+	// let mut set = BTreeSet::from_iter(set.iter().filter(|x| x > &&&0));
+	let mut btset = orderNumbers.iter().collect::<BTreeSet<_>>();
+	let mut set = btset.iter().filter(|x| x > &&&0);
 
 	drop(orderNumbers);
 	//print!("{:?}", set);
@@ -45,8 +47,6 @@ mod tests {
 
 	#[test]
 	fn findSmallestInt_batch_test()	{
-		let a = [23,45,67];
-
 		let td = TestData {
 			input_data: [1,2,3,5],
 			expected_result: 4,
