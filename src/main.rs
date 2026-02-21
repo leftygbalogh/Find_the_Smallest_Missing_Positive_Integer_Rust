@@ -142,3 +142,21 @@ fn main() {
 
 	println!("{}", result);
 }
+
+//TODO
+// Would be nice to handle large inputs as well. See:
+// 999
+// -5
+// -4
+// -3
+// -2
+// -1
+// 0
+// 1
+// 2
+// 4
+// 6303603237
+//
+// thread 'main' (16512) panicked at src\main.rs:137:96:
+// called `Result::unwrap()` on an `Err` value: ParseIntError { kind: PosOverflow }
+// stack backtrace:
