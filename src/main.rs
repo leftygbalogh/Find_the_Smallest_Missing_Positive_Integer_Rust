@@ -82,16 +82,18 @@ mod tests {
 	#[test]
 	fn OneHundredKItems_batch_test()	{
 		use rand::prelude::*;
+
+		pub const ONEK: i32 = 100_000;
 		#[derive(Debug)]
 		pub struct OneHundredKTestData {
-			input_data: [i32; 10],
+			input_data: [i32; ONEK as usize],
 			expected_result: u8,
 		}
 
 		impl OneHundredKTestData {
 			pub fn new_random() -> OneHundredKTestData {
-				let mut data = [0;10];
-				for _ in 0..10  {
+				let mut data = [0;ONEK as usize];
+				for _ in 0..ONEK  {
 					data.fill(rand::random());
 				}
 				data[0] = 5;
@@ -110,7 +112,7 @@ mod tests {
 			}
 
 		let data = OneHundredKTestData::new_random();
-		println!("DIPLODOCUS{:?}", &data);
+		//println!("DIPLODOCUS{:?}", &data);
 		assert_eq!(findSmallestMissingPositive(&data.input_data), data.expected_result.into())
 		}
 
