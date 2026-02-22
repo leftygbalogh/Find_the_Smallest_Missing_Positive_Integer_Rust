@@ -1,12 +1,5 @@
 use std::io::{self, BufRead};
 
-/*
- * Complete the 'findSmallestMissingPositive' function below.
- *
- * The function is expected to return an INTEGER.
- * The function accepts INTEGER_ARRAY orderNumbers as parameter.
- */
-
 pub fn find_smallest_missing_positive(order_numbers: &[i64]) -> i64 {
     if order_numbers.is_empty() {
         return 1;
@@ -14,18 +7,12 @@ pub fn find_smallest_missing_positive(order_numbers: &[i64]) -> i64 {
 
     use std::collections::BTreeSet;
 
-    // let mut set = BTreeSet::from_iter(orderNumbers.iter());
-    // let mut set = BTreeSet::from_iter(set.iter().filter(|x| x > &&&0));
     let btset = order_numbers.iter().collect::<BTreeSet<_>>();
     let set = btset.iter().filter(|x| x > &&&0);
 
     let _ = order_numbers;
-    //print!("{:?}", set);
-
     let mut index = 1;
     for value in set {
-        //println!("index {}", &index);
-        //println!("value {}", &value);
         if value != &&index {
             return index;
         }
@@ -43,7 +30,7 @@ mod tests {
     }
 
     #[test]
-    fn findSmallestInt_batch_test() {
+    fn find_smallest_int_batch_test() {
         let td1 = TestData {
             input_data: [1, 2, 3, 5],
             expected_result: 4,
@@ -71,7 +58,7 @@ mod tests {
     }
 
     #[test]
-    fn find_Smallest_Missing_Positive_test() {
+    fn find_smallest_missing_positive_test() {
         assert_eq!(find_smallest_missing_positive(&[]), 1);
         assert_eq!(find_smallest_missing_positive(&[1]), 2);
         assert_eq!(find_smallest_missing_positive(&[0]), 1);
@@ -94,7 +81,7 @@ mod tests {
     }
 
     #[test]
-    fn One_Hundred_K_Items_batch_test() {
+    fn one_hundred_k_items_batch_test() {
         pub const ONEK: i64 = 85_555;
         #[derive(Debug)]
         pub struct OneHundredKTestData {
@@ -127,7 +114,6 @@ mod tests {
         }
 
         let data = OneHundredKTestData::new_random();
-        //println!("DIPLODOCUS{:?}", &data);
         assert_eq!(
 			find_smallest_missing_positive(&data.input_data),
 			data.expected_result.into()
@@ -165,21 +151,3 @@ fn main() {
 
     println!("{}", result);
 }
-
-//TODO
-// Would be nice to handle large inputs as well. See:
-// 999
-// -5
-// -4
-// -3
-// -2
-// -1
-// 0
-// 1
-// 2
-// 4
-// 6303603237
-//
-// thread 'main' (16512) panicked at src\main.rs:137:96:
-// called `Result::unwrap()` on an `Err` value: ParseIntError { kind: PosOverflow }
-// stack backtrace:
