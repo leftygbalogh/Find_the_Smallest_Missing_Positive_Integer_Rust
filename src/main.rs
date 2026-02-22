@@ -43,7 +43,7 @@ mod tests {
     }
 
     #[test]
-    fn findSmallestInt_batch_test() {
+    fn find_smallest_int_batch_test() {
         let td1 = TestData {
             input_data: [1, 2, 3, 5],
             expected_result: 4,
@@ -71,7 +71,7 @@ mod tests {
     }
 
     #[test]
-    fn find_Smallest_Missing_Positive_test() {
+    fn find_smallest_missing_positive_test() {
         assert_eq!(find_smallest_missing_positive(&[]), 1);
         assert_eq!(find_smallest_missing_positive(&[1]), 2);
         assert_eq!(find_smallest_missing_positive(&[0]), 1);
@@ -94,7 +94,7 @@ mod tests {
     }
 
     #[test]
-    fn One_Hundred_K_Items_batch_test() {
+    fn one_hundred_k_items_batch_test() {
         pub const ONEK: i64 = 85_555;
         #[derive(Debug)]
         pub struct OneHundredKTestData {
@@ -165,21 +165,3 @@ fn main() {
 
     println!("{}", result);
 }
-
-//TODO
-// Would be nice to handle large inputs as well. See:
-// 999
-// -5
-// -4
-// -3
-// -2
-// -1
-// 0
-// 1
-// 2
-// 4
-// 6303603237
-//
-// thread 'main' (16512) panicked at src\main.rs:137:96:
-// called `Result::unwrap()` on an `Err` value: ParseIntError { kind: PosOverflow }
-// stack backtrace:
