@@ -1,12 +1,5 @@
 use std::io::{self, BufRead};
 
-/*
- * Complete the 'findSmallestMissingPositive' function below.
- *
- * The function is expected to return an INTEGER.
- * The function accepts INTEGER_ARRAY orderNumbers as parameter.
- */
-
 pub fn find_smallest_missing_positive(order_numbers: &[i64]) -> i64 {
     if order_numbers.is_empty() {
         return 1;
@@ -14,18 +7,12 @@ pub fn find_smallest_missing_positive(order_numbers: &[i64]) -> i64 {
 
     use std::collections::BTreeSet;
 
-    // let mut set = BTreeSet::from_iter(orderNumbers.iter());
-    // let mut set = BTreeSet::from_iter(set.iter().filter(|x| x > &&&0));
     let btset = order_numbers.iter().collect::<BTreeSet<_>>();
     let set = btset.iter().filter(|x| x > &&&0);
 
     let _ = order_numbers;
-    //print!("{:?}", set);
-
     let mut index = 1;
     for value in set {
-        //println!("index {}", &index);
-        //println!("value {}", &value);
         if value != &&index {
             return index;
         }
@@ -127,7 +114,6 @@ mod tests {
         }
 
         let data = OneHundredKTestData::new_random();
-        //println!("DIPLODOCUS{:?}", &data);
         assert_eq!(
 			find_smallest_missing_positive(&data.input_data),
 			data.expected_result.into()
