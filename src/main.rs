@@ -1,4 +1,3 @@
-use std::collections::BTreeSet;
 use std::io::{self, BufRead};
 
 /*
@@ -8,8 +7,8 @@ use std::io::{self, BufRead};
  * The function accepts INTEGER_ARRAY orderNumbers as parameter.
  */
 
-pub fn findSmallestMissingPositive(orderNumbers: &[i64]) -> i64 {
-    if orderNumbers.len() == 0 {
+pub fn find_smallest_missing_positive(order_numbers: &[i64]) -> i64 {
+    if order_numbers.len() == 0 {
         return 1;
     }
 
@@ -17,10 +16,10 @@ pub fn findSmallestMissingPositive(orderNumbers: &[i64]) -> i64 {
 
     // let mut set = BTreeSet::from_iter(orderNumbers.iter());
     // let mut set = BTreeSet::from_iter(set.iter().filter(|x| x > &&&0));
-    let mut btset = orderNumbers.iter().collect::<BTreeSet<_>>();
-    let mut set = btset.iter().filter(|x| x > &&&0);
+    let btset = order_numbers.iter().collect::<BTreeSet<_>>();
+    let set = btset.iter().filter(|x| x > &&&0);
 
-    drop(orderNumbers);
+    let _ = order_numbers;
     //print!("{:?}", set);
 
     let mut index = 1;
@@ -65,21 +64,21 @@ mod tests {
         for td in tdlist.iter() {
             println!("{:?}", &td.input_data);
             assert_eq!(
-                findSmallestMissingPositive(&[1, 2, 3, 5]),
-                td.expected_result.into()
+				find_smallest_missing_positive(&[1, 2, 3, 5]),
+				td.expected_result.into()
             );
         }
     }
 
     #[test]
     fn findSmallestMissingPositive_test() {
-        assert_eq!(findSmallestMissingPositive(&[]), 1);
-        assert_eq!(findSmallestMissingPositive(&[1]), 2);
-        assert_eq!(findSmallestMissingPositive(&[0]), 1);
-        assert_eq!(findSmallestMissingPositive(&[-1, -3, -4, -9, -7]), 1);
-        assert_eq!(findSmallestMissingPositive(&[1, 3, 4, -9, 7]), 2);
+        assert_eq!(find_smallest_missing_positive(&[]), 1);
+        assert_eq!(find_smallest_missing_positive(&[1]), 2);
+        assert_eq!(find_smallest_missing_positive(&[0]), 1);
+        assert_eq!(find_smallest_missing_positive(&[-1, -3, -4, -9, -7]), 1);
+        assert_eq!(find_smallest_missing_positive(&[1, 3, 4, -9, 7]), 2);
         assert_eq!(
-            findSmallestMissingPositive(
+			find_smallest_missing_positive(
                  &[
                     9644455085, 2397179666, 6886896129, 6935504988, 6903521541, 6745404418,
                     4539618744, 5258576932, 1685165598, 8761923581, 9480182470, 4633157410,
@@ -90,7 +89,7 @@ mod tests {
                     3137907629
                 ]
             ),
-            1
+			1
         );
     }
 
@@ -132,8 +131,8 @@ mod tests {
         let data = OneHundredKTestData::new_random();
         //println!("DIPLODOCUS{:?}", &data);
         assert_eq!(
-            findSmallestMissingPositive(&data.input_data),
-            data.expected_result.into()
+			find_smallest_missing_positive(&data.input_data),
+			data.expected_result.into()
         )
     }
 }
@@ -143,7 +142,7 @@ fn main() {
     let stdin = io::stdin();
     let mut stdin_iterator = stdin.lock().lines();
 
-    let orderNumbers_count = stdin_iterator
+    let order_numbers_count = stdin_iterator
         .next()
         .unwrap()
         .unwrap()
@@ -151,9 +150,9 @@ fn main() {
         .parse::<i64>()
         .unwrap();
 
-    let mut order_numbers: Vec<i64> = Vec::with_capacity(orderNumbers_count as usize);
+    let mut order_numbers: Vec<i64> = Vec::with_capacity(order_numbers_count as usize);
 
-    for _ in 0..orderNumbers_count {
+    for _ in 0..order_numbers_count {
         let order_numbers_item = stdin_iterator
             .next()
             .unwrap()
@@ -164,7 +163,7 @@ fn main() {
         order_numbers.push(order_numbers_item);
     }
 
-    let result = findSmallestMissingPositive(&order_numbers);
+    let result = find_smallest_missing_positive(&order_numbers);
 
     println!("{}", result);
 }
