@@ -8,7 +8,7 @@ use std::io::{self, BufRead};
  */
 
 pub fn find_smallest_missing_positive(order_numbers: &[i64]) -> i64 {
-    if order_numbers.len() == 0 {
+    if order_numbers.is_empty() {
         return 1;
     }
 
@@ -31,7 +31,7 @@ pub fn find_smallest_missing_positive(order_numbers: &[i64]) -> i64 {
         }
         index += 1;
     }
-    return index;
+    index
 }
 
 #[cfg(test)]
@@ -71,7 +71,7 @@ mod tests {
     }
 
     #[test]
-    fn findSmallestMissingPositive_test() {
+    fn find_Smallest_Missing_Positive_test() {
         assert_eq!(find_smallest_missing_positive(&[]), 1);
         assert_eq!(find_smallest_missing_positive(&[1]), 2);
         assert_eq!(find_smallest_missing_positive(&[0]), 1);
@@ -94,9 +94,7 @@ mod tests {
     }
 
     #[test]
-    fn OneHundredKItems_batch_test() {
-        use rand::prelude::*;
-
+    fn One_Hundred_K_Items_batch_test() {
         pub const ONEK: i64 = 85_555;
         #[derive(Debug)]
         pub struct OneHundredKTestData {
